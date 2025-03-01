@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 
 class Brincadeiras {
@@ -20,6 +18,22 @@ class Brincadeiras {
 
   factory Brincadeiras.fromJson(String source) =>
       Brincadeiras.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  factory Brincadeiras.fromMap(Map<String, dynamic> map) {
+    return Brincadeiras(
+      titulo: map['titulo'] as String,
+      categoria: map['categoria'] as String,
+      custo: map['custo'] as String,
+      descricao: map['descricao'] as String,
+      dificuldade: map['dificuldade'] as String,
+      duracao: map['duracao'] as String,
+      faixaEtaria: map['faixaEtaria'] as String,
+      favorito: map['favorito'] as bool,
+      id: map['id'] as int,
+      imagem: map['imagem'] as String,
+      materiais: List<String>.from((map['materiais'] as List<dynamic>)),
+    );
+  }
 
   final String categoria;
   final String custo;
@@ -115,20 +129,4 @@ class Brincadeiras {
   }
 
   String toJson() => json.encode(toMap());
-
-  factory Brincadeiras.fromMap(Map<String, dynamic> map) {
-    return Brincadeiras(
-      titulo: map['titulo'] as String,
-      categoria: map['categoria'] as String,
-      custo: map['custo'] as String,
-      descricao: map['descricao'] as String,
-      dificuldade: map['dificuldade'] as String,
-      duracao: map['duracao'] as String,
-      faixaEtaria: map['faixaEtaria'] as String,
-      favorito: map['favorito'] as bool,
-      id: map['id'] as int,
-      imagem: map['imagem'] as String,
-      materiais: List<String>.from((map['materiais'] as List<dynamic>)),
-    );
-  }
 }
