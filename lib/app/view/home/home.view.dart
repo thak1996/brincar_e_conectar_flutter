@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeController()..getBrincadeiras(),
       child: Scaffold(
-        appBar: AppBarWidget(),
+        appBar: AppBarWidget(showFilter: true),
         backgroundColor: accentColor.withValues(alpha: 20),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
