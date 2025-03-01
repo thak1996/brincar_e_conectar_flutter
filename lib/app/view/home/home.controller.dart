@@ -9,7 +9,7 @@ class HomeController extends Cubit<HomeState> {
 
   Future<void> getBrincadeiras() async {
     emit(HomeLoading());
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
     final result = await _service.getBrincadeiras();
     result.fold(
       (brincadeiras) => emit(HomeLoaded(brincadeiras)),
@@ -25,9 +25,10 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  HomeLoaded(this.brincadeiras);
+  HomeLoaded(this.brincadeiras) : totalBrincadeiras = brincadeiras.length;
 
   final List<Brincadeiras> brincadeiras;
+  final int totalBrincadeiras;
 }
 
 class HomeError extends HomeState {
