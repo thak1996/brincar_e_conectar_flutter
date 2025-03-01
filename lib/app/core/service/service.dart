@@ -2,9 +2,14 @@ import 'package:dio/dio.dart';
 import '../interfaces/service.interface.dart';
 
 class BaseService implements IService {
-  BaseService(this.baseUrl) : dio = Dio(BaseOptions(baseUrl: baseUrl));
+  BaseService()
+    : dio = Dio(
+        BaseOptions(
+          baseUrl:
+              'https://raw.githubusercontent.com/thak1996/brincar_e_conectar-json/refs/heads/main',
+        ),
+      );
 
-  final String baseUrl;
   final Dio dio;
 
   @override
