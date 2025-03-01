@@ -8,12 +8,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.onFilterChanged,
     this.selectedFaixaEtaria,
     this.showFilter = false,
+    this.showTitle = true,
   });
 
   final String? title;
   final Function(String)? onFilterChanged;
   final String? selectedFaixaEtaria;
   final bool showFilter;
+  final bool showTitle;
 
   @override
   Size get preferredSize => const Size.fromHeight(56);
@@ -22,14 +24,17 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: Text(
-        title ?? 'Brincar e Conectar',
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      title:
+          showTitle
+              ? Text(
+                title ?? 'Brincar e Conectar',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              )
+              : null,
       iconTheme: const IconThemeData(color: Colors.white),
       backgroundColor: primaryColor,
       shape: const RoundedRectangleBorder(
