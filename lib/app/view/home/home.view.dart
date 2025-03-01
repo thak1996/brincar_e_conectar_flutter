@@ -15,7 +15,27 @@ class HomeView extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeController()..getBrincadeiras(),
       child: Scaffold(
-        appBar: AppBarWidget(showFilter: true),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: BlocBuilder<HomeController, HomeState>(
+            builder: (context, state) {
+              String? selectedFaixaEtaria;
+              if (state is HomeLoaded) {
+                selectedFaixaEtaria = state.faixaEtariaFilter;
+              }
+              return AppBarWidget(
+                title: 'Brincar e Conectar',
+                onFilterChanged: (faixaEtaria) {
+                  context.read<HomeController>().filterBrincadeiras(
+                    faixaEtaria,
+                  );
+                },
+                showFilter: true,
+                selectedFaixaEtaria: selectedFaixaEtaria,
+              );
+            },
+          ),
+        ),
         backgroundColor: accentColor.withValues(alpha: 20),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

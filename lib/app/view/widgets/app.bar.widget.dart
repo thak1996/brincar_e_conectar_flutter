@@ -36,7 +36,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
       ),
       actions: [
-        if (showFilter) // Condicionalmente adiciona o PopupMenuButton
+        if (showFilter)
           PopupMenuButton<String>(
             icon: const Icon(Icons.filter_list),
             onSelected: (String value) {
@@ -49,7 +49,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   child: Text('Todas as idades'),
                 ),
                 const PopupMenuItem<String>(
-                  value: 'infantil',
+                  value: 'crianças',
                   child: Text('Infantil'),
                 ),
                 const PopupMenuItem<String>(

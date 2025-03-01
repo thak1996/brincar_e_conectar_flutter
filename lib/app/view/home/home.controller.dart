@@ -1,20 +1,41 @@
-import 'package:brincar_e_conectar_flutter/app/core/service/brincadeiras.service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/brincadeiras.dart';
+import '../../core/service/brincadeiras.service.dart';
 
 class HomeController extends Cubit<HomeState> {
   HomeController() : super(HomeInitial());
 
   final BrincadeirasService _service = BrincadeirasService();
+  List<Brincadeiras> _allBrincadeiras = [];
 
   Future<void> getBrincadeiras() async {
     emit(HomeLoading());
     await Future.delayed(Duration(seconds: 1));
     final result = await _service.getBrincadeiras();
-    result.fold(
-      (brincadeiras) => emit(HomeLoaded(brincadeiras)),
-      (error) => emit(HomeError(error.toString())),
-    );
+    result.fold((brincadeiras) {
+      _allBrincadeiras = brincadeiras;
+      emit(HomeLoaded(brincadeiras: brincadeiras, faixaEtariaFilter: 'todas'));
+    }, (error) => emit(HomeError(error.toString())));
+  }
+
+  void filterBrincadeiras(String? faixaEtaria) {
+    emit(HomeLoading());
+    if (faixaEtaria == null || faixaEtaria == 'todas') {
+      emit(
+        HomeLoaded(brincadeiras: _allBrincadeiras, faixaEtariaFilter: 'todas'),
+      );
+    } else {
+      final filteredBrincadeiras =
+          _allBrincadeiras
+              .where((brincadeira) => brincadeira.faixaEtaria == faixaEtaria)
+              .toList();
+      emit(
+        HomeLoaded(
+          brincadeiras: filteredBrincadeiras,
+          faixaEtariaFilter: faixaEtaria,
+        ),
+      );
+    }
   }
 }
 
@@ -25,10 +46,10 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  HomeLoaded(this.brincadeiras) : totalBrincadeiras = brincadeiras.length;
+  HomeLoaded({required this.brincadeiras, required this.faixaEtariaFilter});
 
   final List<Brincadeiras> brincadeiras;
-  final int totalBrincadeiras;
+  final String faixaEtariaFilter;
 }
 
 class HomeError extends HomeState {
