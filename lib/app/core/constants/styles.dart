@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 const brightness = Brightness.light;
-const primaryColor = Color(0xFF2AACFF);
-const accentColor = Color(0xFFFFFFFF);
+const primaryColor = Color(0xFFFFFFFF);
+const accentColor = Color(0xFF2AACFF);
 
-ThemeData androidTheme() {
+ThemeData appTheme() {
   return ThemeData(
     brightness: brightness,
     primaryColor: primaryColor,

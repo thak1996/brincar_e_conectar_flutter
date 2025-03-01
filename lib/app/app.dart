@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         title: 'Brincar e Conectar',
         debugShowCheckedModeBanner: false,
         routerConfig: appRouter,
-        theme: androidTheme(),
+        theme: appTheme(),
       ),
     );
   }
