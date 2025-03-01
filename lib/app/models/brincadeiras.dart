@@ -1,42 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 class Brincadeiras {
   Brincadeiras({
-    required this.id,
-    required this.titulo,
-    required this.descricao,
-    required this.faixaEtaria,
-    required this.materiais,
-    required this.duracao,
-    required this.custo,
-    required this.dificuldade,
     required this.categoria,
+    required this.custo,
+    required this.descricao,
+    required this.dificuldade,
+    required this.duracao,
+    required this.faixaEtaria,
     required this.favorito,
+    required this.id,
     required this.imagem,
+    required this.materiais,
+    required this.titulo,
   });
 
   factory Brincadeiras.fromJson(String source) =>
       Brincadeiras.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  factory Brincadeiras.fromMap(Map<String, dynamic> map) {
-    return Brincadeiras(
-      id: map['id'] is int ? map['id'] : int.parse(map['id'] ?? '0'),
-      titulo: map['titulo'] as String? ?? '',
-      descricao: map['descricao'] as String? ?? '',
-      faixaEtaria: map['faixaEtaria'] as String? ?? '',
-      materiais:
-          map['materiais'] != null
-              ? List<String>.from(map['materiais'] as List)
-              : [],
-      duracao: map['duracao'] as String? ?? '',
-      custo: map['custo'] as String? ?? '',
-      dificuldade: map['dificuldade'] as String? ?? '',
-      categoria: map['categoria'] as String? ?? '',
-      favorito: map['favorito'] as bool? ?? false,
-      imagem: map['imagem'] as String? ?? '',
-    );
-  }
 
   final String categoria;
   final String custo;
@@ -54,82 +37,98 @@ class Brincadeiras {
   bool operator ==(covariant Brincadeiras other) {
     if (identical(this, other)) return true;
 
-    return other.id == id &&
-        other.titulo == titulo &&
-        other.descricao == descricao &&
-        other.faixaEtaria == faixaEtaria &&
-        listEquals(other.materiais, materiais) &&
-        other.duracao == duracao &&
+    return other.categoria == categoria &&
         other.custo == custo &&
+        other.descricao == descricao &&
         other.dificuldade == dificuldade &&
-        other.categoria == categoria &&
+        other.duracao == duracao &&
+        other.faixaEtaria == faixaEtaria &&
         other.favorito == favorito &&
-        other.imagem == imagem;
+        other.id == id &&
+        other.imagem == imagem &&
+        listEquals(other.materiais, materiais) &&
+        other.titulo == titulo;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        titulo.hashCode ^
-        descricao.hashCode ^
-        faixaEtaria.hashCode ^
-        materiais.hashCode ^
-        duracao.hashCode ^
+    return categoria.hashCode ^
         custo.hashCode ^
+        descricao.hashCode ^
         dificuldade.hashCode ^
-        categoria.hashCode ^
+        duracao.hashCode ^
+        faixaEtaria.hashCode ^
         favorito.hashCode ^
-        imagem.hashCode;
+        id.hashCode ^
+        imagem.hashCode ^
+        materiais.hashCode ^
+        titulo.hashCode;
   }
 
   @override
   String toString() {
-    return 'Brincadeiras(id: $id, titulo: $titulo, descricao: $descricao, faixaEtaria: $faixaEtaria, materiais: $materiais, duracao: $duracao, custo: $custo, dificuldade: $dificuldade, categoria: $categoria, favorito: $favorito, imagem: $imagem)';
+    return 'Brincadeiras(categoria: $categoria, custo: $custo, descricao: $descricao, dificuldade: $dificuldade, duracao: $duracao, faixaEtaria: $faixaEtaria, favorito: $favorito, id: $id, imagem: $imagem, materiais: $materiais, titulo: $titulo)';
   }
 
   Brincadeiras copyWith({
-    int? id,
-    String? titulo,
-    String? descricao,
-    String? faixaEtaria,
-    List<String>? materiais,
-    String? duracao,
-    String? custo,
-    String? dificuldade,
     String? categoria,
+    String? custo,
+    String? descricao,
+    String? dificuldade,
+    String? duracao,
+    String? faixaEtaria,
     bool? favorito,
+    int? id,
     String? imagem,
+    List<String>? materiais,
+    String? titulo,
   }) {
     return Brincadeiras(
-      id: id ?? this.id,
-      titulo: titulo ?? this.titulo,
-      descricao: descricao ?? this.descricao,
-      faixaEtaria: faixaEtaria ?? this.faixaEtaria,
-      materiais: materiais ?? this.materiais,
-      duracao: duracao ?? this.duracao,
-      custo: custo ?? this.custo,
-      dificuldade: dificuldade ?? this.dificuldade,
       categoria: categoria ?? this.categoria,
+      custo: custo ?? this.custo,
+      descricao: descricao ?? this.descricao,
+      dificuldade: dificuldade ?? this.dificuldade,
+      duracao: duracao ?? this.duracao,
+      faixaEtaria: faixaEtaria ?? this.faixaEtaria,
       favorito: favorito ?? this.favorito,
+      id: id ?? this.id,
       imagem: imagem ?? this.imagem,
+      materiais: materiais ?? this.materiais,
+      titulo: titulo ?? this.titulo,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
-      'titulo': titulo,
-      'descricao': descricao,
-      'faixaEtaria': faixaEtaria,
-      'materiais': materiais,
-      'duracao': duracao,
-      'custo': custo,
-      'dificuldade': dificuldade,
       'categoria': categoria,
+      'custo': custo,
+      'descricao': descricao,
+      'dificuldade': dificuldade,
+      'duracao': duracao,
+      'faixaEtaria': faixaEtaria,
       'favorito': favorito,
+      'id': id,
       'imagem': imagem,
+      'materiais': materiais,
+      'titulo': titulo,
     };
   }
 
   String toJson() => json.encode(toMap());
+
+  factory Brincadeiras.fromMap(Map<String, dynamic> map) {
+    return Brincadeiras(
+      titulo: map['titulo'] as String,
+      categoria: map['categoria'] as String,
+      custo: map['custo'] as String,
+      descricao: map['descricao'] as String,
+      dificuldade: map['dificuldade'] as String,
+      duracao: map['duracao'] as String,
+      faixaEtaria: map['faixaEtaria'] as String,
+      favorito: map['favorito'] as bool,
+      id: map['id'] as int,
+      imagem: map['imagem'] as String,
+      materiais: List<String>.from((map['materiais'] as List<dynamic>)),
+    );
+  }
 }
