@@ -54,5 +54,5 @@ O projeto está aberto a futuras melhorias, incluindo um back-end e um sistema d
 ### Contato
 
 Nome do Desenvolvedor: Franklyn Viana dos Santos </br>
-RU Uninter: 4298019 </br>
 E-mail: <franklyn_vs_@hotmail.com> </br>
+RU Uninter: 4298019 </br>
