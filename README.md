@@ -17,6 +17,7 @@ O projeto será implementado na cidade de Guarulhos - SP e tem como público-alv
 ### Como Instalar e executar
 
 Siga os passos abaixo para instalar e executar o aplicativo em seu ambiente local:
+
 ```bash
 # Clone o Repositório
 git clone git@github.com:thak1996/brincar_e_conectar_flutter.git
@@ -52,6 +53,6 @@ O projeto está aberto a futuras melhorias, incluindo um back-end e um sistema d
 
 ### Contato
 
-Nome do Desenvolvedor: Franklyn Viana dos Santos
-RU Uninter: 4298019
-E-mail: <franklyn_vs_@hotmail.com>
+Nome do Desenvolvedor: Franklyn Viana dos Santos </br>
+RU Uninter: 4298019 </br>
+E-mail: <franklyn_vs_@hotmail.com> </br>
