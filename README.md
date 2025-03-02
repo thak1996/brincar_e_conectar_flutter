@@ -39,11 +39,11 @@ Desta forma tirando a necessidade obrigatório para criar este exemplo.
 ### Imagens do Projeto
 
 <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-    <img src="/assets/readme/splash.jpeg" alt="Sort by Number" style="width: 250px; height: auto; margin: 10px;">
-    <img src="/assets/readme/home_one.jpeg" alt="Not Found" style="width: 250px; height: auto; margin: 10px;">
-    <img src="/assets/readme/home_two.jpeg" alt="Sort by Name" style="width: 250px; height: auto; margin: 10px;">
-    <img src="/assets/readme/details_one.jpeg" alt="Home" style="width: 250px; height: auto; margin: 10px;">
-    <img src="/assets/readme/details_two.jpeg" alt="Details" style="width: 250px; height: auto; margin: 10px;">
+    <img src="/assets/readme/splash.jpeg" alt="Sort by Number" style="width: 150px; height: auto; margin: 10px;">
+    <img src="/assets/readme/home_one.jpeg" alt="Not Found" style="width: 150px; height: auto; margin: 10px;">
+    <img src="/assets/readme/home_two.jpeg" alt="Sort by Name" style="width: 150px; height: auto; margin: 10px;">
+    <img src="/assets/readme/details_one.jpeg" alt="Home" style="width: 150px; height: auto; margin: 10px;">
+    <img src="/assets/readme/details_two.jpeg" alt="Details" style="width: 150px; height: auto; margin: 10px;">
 </div>
 
 ### Futuras melhorias
