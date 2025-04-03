@@ -1,44 +1,73 @@
+import 'dart:developer';
 import 'package:dio/dio.dart';
-import '../interfaces/service.interface.dart';
+import '../utils/exceptions.dart';
 
-class BaseService implements IService {
-  BaseService()
-    : dio = Dio(
-        BaseOptions(
-          baseUrl:
-              'https://raw.githubusercontent.com/thak1996/brincar_e_conectar-json/refs/heads/main',
-        ),
-      );
+class BaseService {
+  BaseService() : dio = Dio(BaseOptions(baseUrl: 'http://localhost:8000/api')) {
+    _setupInterceptors();
+  }
 
   final Dio dio;
 
-  @override
+  void _setupInterceptors() {
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          log('Requisição para: ${options.uri}');
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          // Verifica se a resposta contém sucesso
+          if (response.data is Map<String, dynamic> &&
+              response.data['success'] == false) {
+            final message = response.data['message'] ?? 'Erro desconhecido';
+            throw ValidationException(message, response.statusCode);
+          }
+          return handler.next(response);
+        },
+        onError: (dioError, handler) {
+          // Trata erros de conexão e HTTP
+          if (dioError.response != null) {
+            final statusCode = dioError.response?.statusCode;
+            final message =
+                dioError.response?.data['message'] ?? 'Erro desconhecido';
+
+            if (statusCode == 401) {
+              throw UnauthorizedException(message, statusCode);
+            } else if (statusCode == 404) {
+              throw NotFoundException(message, statusCode);
+            } else if (statusCode == 422) {
+              throw ValidationException(message, statusCode);
+            } else if (statusCode == 500) {
+              throw ServerException(message, statusCode);
+            } else {
+              throw GeneralException(message, statusCode);
+            }
+          } else {
+            throw NetworkException('Erro de conexão com o servidor.');
+          }
+        },
+      ),
+    );
+  }
+
   Future<Response> delete(String endpoint) async {
-    final response = await dio.delete(endpoint);
-    return response;
+    return await dio.delete(endpoint);
   }
 
-  @override
   Future<Response> get(String endpoint) async {
-    final response = await dio.get(endpoint);
-    return response;
+    return await dio.get(endpoint);
   }
 
-  @override
   Future<Response> patch(String endpoint, Map<String, dynamic> data) async {
-    final response = await dio.patch(endpoint, data: data);
-    return response;
+    return await dio.patch(endpoint, data: data);
   }
 
-  @override
   Future<Response> post(String endpoint, Map<String, dynamic> data) async {
-    final response = await dio.post(endpoint, data: data);
-    return response;
+    return await dio.post(endpoint, data: data);
   }
 
-  @override
   Future<Response> put(String endpoint, Map<String, dynamic> data) async {
-    final response = await dio.put(endpoint, data: data);
-    return response;
+    return await dio.put(endpoint, data: data);
   }
 }
