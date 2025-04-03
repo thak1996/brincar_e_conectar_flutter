@@ -11,7 +11,7 @@ class HomeController extends Cubit<HomeState> {
   Future<void> getBrincadeiras() async {
     emit(HomeLoading());
     await Future.delayed(Duration(seconds: 1));
-    final result = await _service.getBrincadeiras();
+    final result = await _service.getAllBrincadeiras();
     result.fold((brincadeiras) {
       _allBrincadeiras = brincadeiras;
       emit(HomeLoaded(brincadeiras: brincadeiras, faixaEtariaFilter: 'todas'));

@@ -9,11 +9,13 @@ class Brincadeiras {
     required this.dificuldade,
     required this.duracao,
     required this.faixaEtaria,
-    required this.favorito,
+    this.favorito,
     required this.id,
-    required this.imagem,
+    this.imagem,
     required this.materiais,
     required this.titulo,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory Brincadeiras.fromJson(String source) =>
@@ -27,11 +29,13 @@ class Brincadeiras {
       descricao: map['descricao'] as String,
       dificuldade: map['dificuldade'] as String,
       duracao: map['duracao'] as String,
-      faixaEtaria: map['faixaEtaria'] as String,
-      favorito: map['favorito'] as bool,
+      faixaEtaria: map['faixa_etaria'] as String,
+      favorito: map['favorito'] as bool?,
       id: map['id'] as int,
-      imagem: map['imagem'] as String,
-      materiais: List<String>.from((map['materiais'] as List<dynamic>)),
+      imagem: map['imagem'] as String?,
+      materiais: List<String>.from(map['materiais'] as List),
+      createdAt: map['created_at'] as String?,
+      updatedAt: map['updated_at'] as String?,
     );
   }
 
@@ -41,11 +45,13 @@ class Brincadeiras {
   final String dificuldade;
   final String duracao;
   final String faixaEtaria;
-  final bool favorito;
+  final bool? favorito;
   final int id;
-  final String imagem;
+  final String? imagem;
   final List<String> materiais;
   final String titulo;
+  final String? createdAt;
+  final String? updatedAt;
 
   @override
   bool operator ==(covariant Brincadeiras other) {
@@ -61,7 +67,9 @@ class Brincadeiras {
         other.id == id &&
         other.imagem == imagem &&
         listEquals(other.materiais, materiais) &&
-        other.titulo == titulo;
+        other.titulo == titulo &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt;
   }
 
   @override
@@ -76,12 +84,14 @@ class Brincadeiras {
         id.hashCode ^
         imagem.hashCode ^
         materiais.hashCode ^
-        titulo.hashCode;
+        titulo.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode;
   }
 
   @override
   String toString() {
-    return 'Brincadeiras(categoria: $categoria, custo: $custo, descricao: $descricao, dificuldade: $dificuldade, duracao: $duracao, faixaEtaria: $faixaEtaria, favorito: $favorito, id: $id, imagem: $imagem, materiais: $materiais, titulo: $titulo)';
+    return 'Brincadeiras(categoria: $categoria, custo: $custo, descricao: $descricao, dificuldade: $dificuldade, duracao: $duracao, faixaEtaria: $faixaEtaria, favorito: $favorito, id: $id, imagem: $imagem, materiais: $materiais, titulo: $titulo, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   Brincadeiras copyWith({
@@ -96,6 +106,8 @@ class Brincadeiras {
     String? imagem,
     List<String>? materiais,
     String? titulo,
+    String? createdAt,
+    String? updatedAt,
   }) {
     return Brincadeiras(
       categoria: categoria ?? this.categoria,
@@ -109,6 +121,8 @@ class Brincadeiras {
       imagem: imagem ?? this.imagem,
       materiais: materiais ?? this.materiais,
       titulo: titulo ?? this.titulo,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
@@ -119,12 +133,14 @@ class Brincadeiras {
       'descricao': descricao,
       'dificuldade': dificuldade,
       'duracao': duracao,
-      'faixaEtaria': faixaEtaria,
+      'faixa_etaria': faixaEtaria,
       'favorito': favorito,
       'id': id,
       'imagem': imagem,
       'materiais': materiais,
       'titulo': titulo,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
     };
   }
 

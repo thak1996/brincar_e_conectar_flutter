@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:result_dart/result_dart.dart';
 import '../../models/brincadeiras.dart';
 import '../interfaces/brincadeiras.interface.dart';
@@ -9,18 +8,21 @@ class BrincadeirasService extends BaseService implements IBrincadeirasService {
   BrincadeirasService();
 
   @override
-  AsyncResult<List<Brincadeiras>> getBrincadeiras() async {
+  AsyncResult<List<Brincadeiras>> getAllBrincadeiras() async {
     try {
       final response = await get(parseUrl);
+      final responseData = response.data;
       final brincadeiras =
-          (json.decode(response.data)['brincadeiras'] as List)
-              .map((json) => Brincadeiras.fromMap(json))
+          (responseData['data'] as List)
+              .map((item) => Brincadeiras.fromMap(item))
               .toList();
       return Success(brincadeiras);
     } catch (e) {
-      return Failure(GeneralException('Erro ao carregar as brincadeiras: $e'));
+      return Failure(
+        e is AppException ? e : GeneralException('Erro inesperado: $e'),
+      );
     }
   }
 
-  String get parseUrl => "/brincadeiras.json";
+  String get parseUrl => "/brincadeiras";
 }
