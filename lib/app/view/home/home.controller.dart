@@ -8,16 +8,6 @@ class HomeController extends Cubit<HomeState> {
   final BrincadeirasService _service = BrincadeirasService();
   List<Brincadeiras> _allBrincadeiras = [];
 
-  Future<void> getAllBrincadeiras() async {
-    emit(HomeLoading());
-    await Future.delayed(Duration(seconds: 1));
-    final result = await _service.getAllBrincadeiras();
-    result.fold((brincadeiras) {
-      _allBrincadeiras = brincadeiras;
-      emit(HomeLoaded(brincadeiras: brincadeiras, faixaEtariaFilter: 'todas'));
-    }, (error) => emit(HomeError(error.toString())));
-  }
-
   void filterBrincadeiras(String? faixaEtaria) {
     emit(HomeLoading());
     if (faixaEtaria == null || faixaEtaria == 'todas') {
@@ -36,6 +26,22 @@ class HomeController extends Cubit<HomeState> {
         ),
       );
     }
+  }
+
+  Future<void> getAllBrincadeiras() async {
+    emit(HomeLoading());
+    await Future.delayed(Duration(seconds: 1));
+    final result = await _service.getAllBrincadeiras();
+    result.fold((brincadeiras) {
+      _allBrincadeiras = brincadeiras;
+      emit(HomeLoaded(brincadeiras: brincadeiras, faixaEtariaFilter: 'todas'));
+    }, (error) => emit(HomeError(error.toString())));
+  }
+
+  void deleteBrincadeira(Brincadeiras brincadeira) {
+    emit(HomeLoading());
+    _allBrincadeiras.remove(brincadeira);
+    emit(HomeLoaded(brincadeiras: _allBrincadeiras, faixaEtariaFilter: 'todas'));
   }
 }
 

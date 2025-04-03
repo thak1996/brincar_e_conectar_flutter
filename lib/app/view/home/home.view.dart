@@ -1,10 +1,11 @@
-import 'package:brincar_e_conectar_flutter/app/core/constants/styles.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/app.bar.widget.dart';
-import '../widgets/card.widget.dart';
 import '../widgets/error.widget.dart';
+import '../widgets/listtile.widget.dart';
 import 'home.controller.dart';
 
 class HomeView extends StatelessWidget {
@@ -36,7 +37,7 @@ class HomeView extends StatelessWidget {
             },
           ),
         ),
-        backgroundColor: accentColor.withValues(alpha: 20),
+        backgroundColor: Colors.white,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -48,29 +49,43 @@ class HomeView extends StatelessWidget {
                   case const (HomeLoaded):
                     final stateLoaded = state as HomeLoaded;
                     return Expanded(
-                      child: SingleChildScrollView(
-                        child: ListView.builder(
-                          itemCount: stateLoaded.brincadeiras.length,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 4,
-                            horizontal: 12,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Text(
+                              'Lista de Brincadeiras',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                          shrinkWrap: true,
-                          physics: AlwaysScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            final brincadeira = stateLoaded.brincadeiras[index];
-                            return CardWidget(
-                              title: brincadeira.titulo,
-                              description: brincadeira.descricao,
-                              onTap: () {
-                                return context.push(
-                                  '/brincadeira_detail',
-                                  extra: brincadeira,
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: stateLoaded.brincadeiras.length,
+                              itemBuilder: (context, index) {
+                                final brincadeira =
+                                    stateLoaded.brincadeiras[index];
+                                return ListTileWidget(
+                                  title: brincadeira.titulo,
+                                  description: brincadeira.descricao,
+                                  onTap: () {
+                                    context.push(
+                                      '/brincadeira_detail',
+                                      extra: brincadeira,
+                                    );
+                                  },
+                                  onDismissed:
+                                      () => context
+                                          .read<HomeController>()
+                                          .deleteBrincadeira(brincadeira),
                                 );
                               },
-                            );
-                          },
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   case const (HomeError):
