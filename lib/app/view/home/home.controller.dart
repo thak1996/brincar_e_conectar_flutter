@@ -8,7 +8,7 @@ class HomeController extends Cubit<HomeState> {
   final BrincadeirasService _service = BrincadeirasService();
   List<Brincadeiras> _allBrincadeiras = [];
 
-  Future<void> getBrincadeiras() async {
+  Future<void> getAllBrincadeiras() async {
     emit(HomeLoading());
     await Future.delayed(Duration(seconds: 1));
     final result = await _service.getAllBrincadeiras();

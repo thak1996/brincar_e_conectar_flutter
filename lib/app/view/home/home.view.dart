@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeController()..getBrincadeiras(),
+      create: (context) => HomeController()..getAllBrincadeiras(),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
@@ -77,7 +77,11 @@ class HomeView extends StatelessWidget {
                     final stateError = state as HomeError;
                     return HomeErrorWidget(
                       text: stateError.message,
-                      onPressed: () => context.read().getBrincadeiras(),
+                      onPressed:
+                          () =>
+                              context
+                                  .read<HomeController>()
+                                  .getAllBrincadeiras(),
                     );
                   default:
                     return const SizedBox();

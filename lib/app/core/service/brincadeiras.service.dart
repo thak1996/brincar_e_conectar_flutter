@@ -18,9 +18,7 @@ class BrincadeirasService extends BaseService implements IBrincadeirasService {
               .toList();
       return Success(brincadeiras);
     } catch (e) {
-      return Failure(
-        e is AppException ? e : GeneralException('Erro inesperado: $e'),
-      );
+      return Failure(ServerException(e.toString()));
     }
   }
 
