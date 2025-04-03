@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -49,40 +47,52 @@ class HomeView extends StatelessWidget {
                   case const (HomeLoaded):
                     final stateLoaded = state as HomeLoaded;
                     return Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Stack(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Text(
-                              'Lista de Brincadeiras',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Positioned.fill(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: ListView.builder(
+                                    itemCount: stateLoaded.brincadeiras.length,
+                                    padding: const EdgeInsets.only(top: 60),
+                                    itemBuilder: (context, index) {
+                                      final brincadeira =
+                                          stateLoaded.brincadeiras[index];
+                                      return ListTileWidget(
+                                        title: brincadeira.titulo,
+                                        description: brincadeira.descricao,
+                                        onTap: () {
+                                          context.push(
+                                            '/brincadeira_detail',
+                                            extra: brincadeira,
+                                          );
+                                        },
+                                        onDismissed:
+                                            () => context
+                                                .read<HomeController>()
+                                                .deleteBrincadeira(brincadeira),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: stateLoaded.brincadeiras.length,
-                              itemBuilder: (context, index) {
-                                final brincadeira =
-                                    stateLoaded.brincadeiras[index];
-                                return ListTileWidget(
-                                  title: brincadeira.titulo,
-                                  description: brincadeira.descricao,
-                                  onTap: () {
-                                    context.push(
-                                      '/brincadeira_detail',
-                                      extra: brincadeira,
-                                    );
-                                  },
-                                  onDismissed:
-                                      () => context
-                                          .read<HomeController>()
-                                          .deleteBrincadeira(brincadeira),
-                                );
-                              },
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              color: Colors.white,
+                              padding: const EdgeInsets.all(16),
+                              child: Text(
+                                'Lista de Brincadeiras',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
                           ),
                         ],
