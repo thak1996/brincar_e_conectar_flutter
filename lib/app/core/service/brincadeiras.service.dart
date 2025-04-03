@@ -7,6 +7,8 @@ import 'service.dart';
 class BrincadeirasService extends BaseService implements IBrincadeirasService {
   BrincadeirasService();
 
+  String get parseUrl => "/brincadeiras";
+
   @override
   AsyncResult<List<Brincadeiras>> getAllBrincadeiras() async {
     try {
@@ -22,5 +24,20 @@ class BrincadeirasService extends BaseService implements IBrincadeirasService {
     }
   }
 
-  String get parseUrl => "/brincadeiras";
+  @override
+  AsyncResult<void> delBrincadeira(int id) async {
+    try {
+      final response = await delete('$parseUrl/$id');
+      final responseData = response.data as Map<String, dynamic>;
+      if (responseData['success'] != true) {
+        throw ValidationException(
+          responseData['message'] ?? 'Erro ao deletar a brincadeira.',
+          response.statusCode,
+        );
+      }
+      return Success('Brincadeira deletada com sucesso!');
+    } catch (e) {
+      return Failure(ServerException(e.toString()));
+    }
+  }
 }
