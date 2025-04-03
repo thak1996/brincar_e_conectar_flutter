@@ -1,4 +1,4 @@
-import 'package:brincar_e_conectar_flutter/app/core/utils/enum.dart';
+import 'package:brincar_e_conectar_flutter/app/core/utils/enum.utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/brincadeiras.dart';
 import '../../core/service/brincadeiras.service.dart';

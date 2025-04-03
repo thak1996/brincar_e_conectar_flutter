@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
-import '../core/utils/enum.dart';
+import '../core/utils/enum.utils.dart';
 
 class Brincadeiras {
   Brincadeiras({

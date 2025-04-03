@@ -1,3 +1,5 @@
+import 'package:brincar_e_conectar_flutter/app/core/utils/enum.utils.dart';
+import 'package:brincar_e_conectar_flutter/app/core/utils/string.utils.dart';
 import 'package:brincar_e_conectar_flutter/app/view/widgets/app.bar.widget.dart';
 import 'package:flutter/material.dart';
 import '../../models/brincadeiras.dart';
@@ -21,27 +23,27 @@ class BrincadeiraDetalhesView extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.category),
               title: const Text('Categoria'),
-              subtitle: Text(brincadeiras.categoria.name),
+              subtitle: Text(brincadeiras.categoria.formatted),
             ),
             ListTile(
               leading: const Icon(Icons.access_time),
               title: const Text('Duração'),
-              subtitle: Text(brincadeiras.duracao),
+              subtitle: Text(formatUpperCase(brincadeiras.duracao)),
             ),
             ListTile(
               leading: const Icon(Icons.attach_money),
               title: const Text('Custo'),
-              subtitle: Text(brincadeiras.custo),
+              subtitle: Text(formatUpperCase(brincadeiras.custo)),
             ),
             ListTile(
               leading: const Icon(Icons.emoji_events),
               title: const Text('Dificuldade'),
-              subtitle: Text(brincadeiras.dificuldade.name),
+              subtitle: Text(brincadeiras.dificuldade.formatted),
             ),
             ListTile(
               leading: const Icon(Icons.group),
               title: const Text('Faixa Etária'),
-              subtitle: Text(brincadeiras.faixaEtaria.name),
+              subtitle: Text(brincadeiras.faixaEtaria.formatted),
             ),
             const Divider(color: Colors.black),
             const Text(
@@ -50,7 +52,10 @@ class BrincadeiraDetalhesView extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             for (var material in brincadeiras.materiais)
-              ListTile(leading: const Icon(Icons.check), title: Text(material)),
+              ListTile(
+                leading: const Icon(Icons.check),
+                title: Text(formatUpperCase(material)),
+              ),
           ],
         ),
       ),

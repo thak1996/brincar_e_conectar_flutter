@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/utils/enum.dart';
+import '../../core/utils/enum.utils.dart';
 import '../../core/utils/validator.dart';
 import '../../models/brincadeiras.dart';
 import '../widgets/app.bar.widget.dart';
@@ -97,7 +97,7 @@ class EditView extends StatelessWidget {
                           Categoria.values.map((Categoria categoria) {
                             return DropdownMenuItem<Categoria>(
                               value: categoria,
-                              child: Text(categoria.name),
+                              child: Text(categoria.formatted),
                             );
                           }).toList(),
                       onChanged: (Categoria? novaCategoria) {
@@ -128,7 +128,7 @@ class EditView extends StatelessWidget {
                           FaixaEtaria.values.map((FaixaEtaria faixaEtaria) {
                             return DropdownMenuItem<FaixaEtaria>(
                               value: faixaEtaria,
-                              child: Text(faixaEtaria.name),
+                              child: Text(faixaEtaria.formatted),
                             );
                           }).toList(),
                       onChanged: (FaixaEtaria? novaFaixaEtaria) {
@@ -145,7 +145,7 @@ class EditView extends StatelessWidget {
                           Dificuldade.values.map((Dificuldade dificuldade) {
                             return DropdownMenuItem<Dificuldade>(
                               value: dificuldade,
-                              child: Text(dificuldade.name),
+                              child: Text(dificuldade.formatted),
                             );
                           }).toList(),
                       onChanged: (Dificuldade? novaDificuldade) {
