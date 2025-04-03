@@ -10,7 +10,7 @@ class Brincadeiras {
     required this.duracao,
     required this.faixaEtaria,
     this.favorito,
-    required this.id,
+    this.id,
     this.imagem,
     required this.materiais,
     required this.titulo,
@@ -46,7 +46,7 @@ class Brincadeiras {
   final String duracao;
   final String faixaEtaria;
   final bool? favorito;
-  final int id;
+  final int? id;
   final String? imagem;
   final List<String> materiais;
   final String titulo;
