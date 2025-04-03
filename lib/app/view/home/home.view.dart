@@ -1,3 +1,4 @@
+import 'package:brincar_e_conectar_flutter/app/core/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -36,6 +37,13 @@ class HomeView extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.white,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => context.push('/edit'),
+          shape: const CircleBorder(),
+          hoverColor: primaryColor,
+          child: const Icon(Icons.add),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

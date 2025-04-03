@@ -19,7 +19,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/edit',
       builder: (context, state) {
-        final brincadeiras = state.extra as Brincadeiras;
+        final brincadeiras = state.extra as Brincadeiras?;
         return EditView(brincadeiras: brincadeiras);
       },
     ),

@@ -40,4 +40,41 @@ class BrincadeirasService extends BaseService implements IBrincadeirasService {
       return Failure(ServerException(e.toString()));
     }
   }
+
+  @override
+  AsyncResult<void> editBrincadeira(Brincadeiras brincadeira) async {
+    try {
+      final response = await put(
+        '$parseUrl/${brincadeira.id}',
+        brincadeira.toMap(),
+      );
+      final responseData = response.data as Map<String, dynamic>;
+      if (responseData['success'] != true) {
+        throw ValidationException(
+          responseData['message'] ?? 'Erro ao editar a brincadeira.',
+          response.statusCode,
+        );
+      }
+      return Success('Brincadeira editada com sucesso!');
+    } catch (e) {
+      return Failure(ServerException(e.toString()));
+    }
+  }
+
+  @override
+  AsyncResult<void> addBrincadeira(Brincadeiras brincadeira) async {
+    try {
+      final response = await post(parseUrl, brincadeira.toMap());
+      final responseData = response.data as Map<String, dynamic>;
+      if (responseData['success'] != true) {
+        throw ValidationException(
+          responseData['message'] ?? 'Erro ao adicionar a brincadeira.',
+          response.statusCode,
+        );
+      }
+      return Success('Brincadeira adicionada com sucesso!');
+    } catch (e) {
+      return Failure(ServerException(e.toString()));
+    }
+  }
 }
