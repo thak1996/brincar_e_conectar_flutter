@@ -3,32 +3,47 @@ import 'package:flutter/material.dart';
 class ListTileWidget extends StatelessWidget {
   const ListTileWidget({
     super.key,
-    this.onTap,
+    this.id,
     required this.title,
     required this.description,
-    required this.onDismissed,
+    required this.onDelete,
+    required this.onEdit,
+    this.onTap,
   });
 
-  final Function()? onTap;
-  final Function()? onDismissed;
   final String description;
+  final int? id;
+  final VoidCallback onDelete;
+  final VoidCallback onEdit;
+  final VoidCallback? onTap;
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(title),
-      direction: DismissDirection.endToStart,
+      key: Key(id.toString()),
+      direction: DismissDirection.horizontal,
       background: Container(
         color: Colors.red,
-        alignment: Alignment.centerRight,
+        alignment: Alignment.centerLeft,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: const Icon(Icons.delete, color: Colors.white),
       ),
-      onDismissed: (direction) {
-        if (onDismissed != null) {
-          onDismissed!();
+      secondaryBackground: Container(
+        color: Colors.blue,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: const Icon(Icons.edit, color: Colors.white),
+      ),
+      confirmDismiss: (direction) async {
+        if (direction == DismissDirection.startToEnd) {
+          onDelete();
+          return true;
+        } else if (direction == DismissDirection.endToStart) {
+          onEdit();
+          return false;
         }
+        return false;
       },
       child: ListTile(
         title: Text(

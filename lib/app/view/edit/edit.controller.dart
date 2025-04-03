@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/brincadeiras.dart';
-import '../../core/service/brincadeiras.service.dart';
 
 class EditController extends Cubit<EditState> {
   EditController() : super(EditInitial());

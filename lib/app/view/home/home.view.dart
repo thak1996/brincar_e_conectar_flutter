@@ -60,18 +60,23 @@ class HomeView extends StatelessWidget {
                                       final brincadeira =
                                           stateLoaded.brincadeiras[index];
                                       return ListTileWidget(
+                                        id: brincadeira.id,
                                         title: brincadeira.titulo,
                                         description: brincadeira.descricao,
-                                        onTap: () {
-                                          context.push(
-                                            '/brincadeira_detail',
-                                            extra: brincadeira,
-                                          );
-                                        },
-                                        onDismissed:
+                                        onTap:
+                                            () => context.push(
+                                              '/brincadeira_detail',
+                                              extra: brincadeira,
+                                            ),
+                                        onDelete:
                                             () => context
                                                 .read<HomeController>()
                                                 .deleteBrincadeira(brincadeira),
+                                        onEdit:
+                                            () => context.push(
+                                              '/edit',
+                                              extra: brincadeira,
+                                            ),
                                       );
                                     },
                                   ),

@@ -1,4 +1,5 @@
 import 'package:brincar_e_conectar_flutter/app/models/brincadeiras.dart';
+import 'package:brincar_e_conectar_flutter/app/view/edit/edit.view.dart';
 import 'package:go_router/go_router.dart';
 import 'view/details/details.view.dart';
 import 'view/home/home.view.dart';
@@ -13,6 +14,13 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         final brincadeiras = state.extra as Brincadeiras;
         return BrincadeiraDetalhesView(brincadeiras: brincadeiras);
+      },
+    ),
+    GoRoute(
+      path: '/edit',
+      builder: (context, state) {
+        final brincadeiras = state.extra as Brincadeiras;
+        return EditView(brincadeiras: brincadeiras);
       },
     ),
   ],

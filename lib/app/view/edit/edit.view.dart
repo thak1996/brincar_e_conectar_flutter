@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/brincadeiras.dart';
+import '../widgets/app.bar.widget.dart';
 import 'edit.controller.dart';
 
 class EditView extends StatelessWidget {
-  final Brincadeiras? brincadeira;
+  final Brincadeiras? brincadeiras;
 
-  const EditView({super.key, this.brincadeira});
+  const EditView({super.key, this.brincadeiras});
 
   @override
   Widget build(BuildContext context) {
     final TextEditingController tituloController = TextEditingController(
-      text: brincadeira?.titulo ?? '',
+      text: brincadeiras?.titulo ?? '',
     );
     final TextEditingController descricaoController = TextEditingController(
-      text: brincadeira?.descricao ?? '',
+      text: brincadeiras?.descricao ?? '',
     );
 
     return BlocProvider(
       create: (_) => EditController(),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            brincadeira == null ? 'Nova Brincadeira' : 'Editar Brincadeira',
-          ),
+        appBar: AppBarWidget(
+          title:
+              brincadeiras == null
+                  ? 'Nova Brincadeira' //
+                  : 'Editar Brincadeira',
         ),
         body: BlocConsumer<EditController, EditState>(
           listener: (context, state) {
@@ -67,31 +69,11 @@ class EditView extends StatelessWidget {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
-                      final updatedBrincadeira =
-                          brincadeira?.copyWith(
-                            titulo: tituloController.text,
-                            descricao: descricaoController.text,
-                            updatedAt: DateTime.now().toString(),
-                          ) ??
-                          Brincadeiras(
-                            id: null,
-                            titulo: tituloController.text,
-                            descricao: descricaoController.text,
-                            categoria: '',
-                            custo: '',
-                            dificuldade: '',
-                            duracao: '',
-                            faixaEtaria: '',
-                            favorito: false,
-                            imagem: null,
-                            materiais: [],
-                            updatedAt: DateTime.now().toString(),
-                          );
                       // context.read<EditController>().saveBrincadeira(
                       //   updatedBrincadeira,
                       // );
                     },
-                    child: Text(brincadeira == null ? 'Criar' : 'Salvar'),
+                    child: Text(brincadeiras == null ? 'Criar' : 'Salvar'),
                   ),
                 ],
               ),
