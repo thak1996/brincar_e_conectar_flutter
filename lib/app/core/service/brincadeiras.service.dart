@@ -42,7 +42,7 @@ class BrincadeirasService extends BaseService implements IBrincadeirasService {
   }
 
   @override
-  AsyncResult<void> editBrincadeira(Brincadeiras brincadeira) async {
+  AsyncResult<String> editBrincadeira(Brincadeiras brincadeira) async {
     try {
       final response = await put(
         '$parseUrl/${brincadeira.id}',
@@ -62,7 +62,7 @@ class BrincadeirasService extends BaseService implements IBrincadeirasService {
   }
 
   @override
-  AsyncResult<void> addBrincadeira(Brincadeiras brincadeira) async {
+  AsyncResult<String> addBrincadeira(Brincadeiras brincadeira) async {
     try {
       final response = await post(parseUrl, brincadeira.toMap());
       final responseData = response.data as Map<String, dynamic>;

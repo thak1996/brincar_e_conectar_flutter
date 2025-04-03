@@ -21,7 +21,7 @@ class BrincadeiraDetalhesView extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.category),
               title: const Text('Categoria'),
-              subtitle: Text(brincadeiras.categoria),
+              subtitle: Text(brincadeiras.categoria.name),
             ),
             ListTile(
               leading: const Icon(Icons.access_time),
@@ -36,12 +36,12 @@ class BrincadeiraDetalhesView extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.emoji_events),
               title: const Text('Dificuldade'),
-              subtitle: Text(brincadeiras.dificuldade),
+              subtitle: Text(brincadeiras.dificuldade.name),
             ),
             ListTile(
               leading: const Icon(Icons.group),
               title: const Text('Faixa Etária'),
-              subtitle: Text(brincadeiras.faixaEtaria),
+              subtitle: Text(brincadeiras.faixaEtaria.name),
             ),
             const Divider(color: Colors.black),
             const Text(

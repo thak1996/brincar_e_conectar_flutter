@@ -1,3 +1,4 @@
+import 'package:brincar_e_conectar_flutter/app/core/utils/enum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/brincadeiras.dart';
 import '../../core/service/brincadeiras.service.dart';
@@ -15,16 +16,21 @@ class HomeController extends Cubit<HomeState> {
         HomeLoaded(brincadeiras: _allBrincadeiras, faixaEtariaFilter: 'todas'),
       );
     } else {
-      final filteredBrincadeiras =
-          _allBrincadeiras
-              .where((brincadeira) => brincadeira.faixaEtaria == faixaEtaria)
-              .toList();
-      emit(
-        HomeLoaded(
-          brincadeiras: filteredBrincadeiras,
-          faixaEtariaFilter: faixaEtaria,
-        ),
-      );
+      final faixaEtariaEnum = FaixaEtariaExtension.fromString(faixaEtaria);
+      if (faixaEtariaEnum != null) {
+        final filteredBrincadeiras =
+            _allBrincadeiras.where((brincadeira) {
+              return brincadeira.faixaEtaria == faixaEtariaEnum;
+            }).toList();
+        emit(
+          HomeLoaded(
+            brincadeiras: filteredBrincadeiras,
+            faixaEtariaFilter: faixaEtaria,
+          ),
+        );
+      } else {
+        emit(HomeError('Faixa etária inválida'));
+      }
     }
   }
 
@@ -41,7 +47,9 @@ class HomeController extends Cubit<HomeState> {
   void deleteBrincadeira(Brincadeiras brincadeira) {
     emit(HomeLoading());
     _allBrincadeiras.remove(brincadeira);
-    emit(HomeLoaded(brincadeiras: _allBrincadeiras, faixaEtariaFilter: 'todas'));
+    emit(
+      HomeLoaded(brincadeiras: _allBrincadeiras, faixaEtariaFilter: 'todas'),
+    );
   }
 }
 

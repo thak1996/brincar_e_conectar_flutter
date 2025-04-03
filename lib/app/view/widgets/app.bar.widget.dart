@@ -61,6 +61,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   value: 'idosos',
                   child: Text('Idosos'),
                 ),
+                const PopupMenuItem<String>(
+                  value: 'adolescente',
+                  child: Text('Adolescentes'),
+                ),
               ];
             },
           ),
