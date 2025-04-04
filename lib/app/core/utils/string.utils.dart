@@ -1,7 +1,7 @@
 String formatUpperCase(String texto) {
   final palavras = texto.split(' ');
   for (int i = 0; i < palavras.length; i++) {
-    if (i == 0 || i == 1) {
+    if (palavras[i].length > 2) {
       palavras[i] =
           palavras[i][0].toUpperCase() + palavras[i].substring(1).toLowerCase();
     } else {
