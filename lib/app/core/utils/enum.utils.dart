@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 enum Categoria {
   jogosCognitivos,
   atividadeFisica,
@@ -32,7 +30,6 @@ extension DuracaoExtension on Duracao {
       case 'mais de 60 minutos':
         return Duracao.longo;
       default:
-        log('Duração não encontrada: $value');
         return null;
     }
   }
@@ -71,7 +68,6 @@ extension CustoExtension on Custo {
       case 'alto':
         return Custo.alto;
       default:
-        log('Custo não encontrado: $value');
         return null;
     }
   }
@@ -124,7 +120,6 @@ extension CategoriaExtension on Categoria {
       case 'desafios digitais':
         return Categoria.desafiosDigitais;
       default:
-        log('Categoria não encontrada: $value');
         return null;
     }
   }
@@ -156,6 +151,8 @@ extension CategoriaExtension on Categoria {
 
   String toStringValue() {
     switch (this) {
+      case Categoria.jogosCognitivos:
+        return 'jogos cognitivos';
       case Categoria.atividadeFisica:
         return 'atividades físicas';
       case Categoria.artes:
@@ -166,8 +163,6 @@ extension CategoriaExtension on Categoria {
         return 'jogos de tabuleiro';
       case Categoria.jogosDeCartas:
         return 'jogos de cartas';
-      case Categoria.jogosCognitivos:
-        return 'jogos cognitivos';
       case Categoria.desafios:
         return 'desafios';
       case Categoria.atividadesDigitais:
@@ -191,7 +186,6 @@ extension FaixaEtariaExtension on FaixaEtaria {
       case 'crianças':
         return FaixaEtaria.crianca;
       default:
-        log('Faixa etária não encontrada: $value');
         return null;
     }
   }
@@ -230,7 +224,6 @@ extension DificuldadeExtension on Dificuldade {
       case 'fácil':
         return Dificuldade.facil;
       default:
-        log('Dificuldade não encontrada: $value');
         return null;
     }
   }

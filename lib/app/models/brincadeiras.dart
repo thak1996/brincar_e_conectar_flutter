@@ -129,23 +129,23 @@ class Brincadeiras {
     );
   }
 
-Map<String, dynamic> toMap() {
-  return <String, dynamic>{
-    'categoria': categoria.toStringValue(),
-    'custo': custo.toStringValue(),
-    'descricao': descricao,
-    'dificuldade': dificuldade.toStringValue(),
-    'duracao': duracao.toStringValue(),
-    'faixa_etaria': faixaEtaria.toStringValue(),
-    'favorito': favorito,
-    'id': id,
-    'imagem': imagem,
-    'materiais': materiais,
-    'titulo': titulo,
-    'created_at': createdAt,
-    'updated_at': updatedAt,
-  };
-}
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'categoria': categoria.toStringValue(),
+      'custo': custo.toStringValue(),
+      'descricao': descricao,
+      'dificuldade': dificuldade.toStringValue(),
+      'duracao': duracao.toStringValue(),
+      'faixa_etaria': faixaEtaria.toStringValue(),
+      'favorito': favorito,
+      'id': id,
+      'imagem': imagem,
+      'materiais': materiais,
+      'titulo': titulo,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
+  }
 
   String toJson() => json.encode(toMap());
 }
