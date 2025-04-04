@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/utils/enum.utils.dart';
@@ -191,7 +193,6 @@ class EditView extends StatelessWidget {
                                 );
                               }).toList(),
                         ),
-
                         ElevatedButton(
                           onPressed: () {
                             final brincadeira = Brincadeiras(
@@ -206,11 +207,17 @@ class EditView extends StatelessWidget {
                               materiais: [],
                               updatedAt: brincadeiras?.updatedAt,
                             );
+                            log('brincadeira: ${brincadeira.toJson()}');
+                            if (!formKey.currentState!.validate()) {
+                              return;
+                            }
                             if (brincadeiras == null) {
+                              log('Criando brincadeira...');
                               context.read<EditController>().saveBrincadeira(
                                 brincadeira,
                               );
                             } else {
+                              log('Editando brincadeira...');
                               context.read<EditController>().updateBrincadeira(
                                 brincadeira,
                               );

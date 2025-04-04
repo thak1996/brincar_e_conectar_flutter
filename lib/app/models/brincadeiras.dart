@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-
 import '../core/utils/enum.utils.dart';
 
 class Brincadeiras {
@@ -130,23 +129,23 @@ class Brincadeiras {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'categoria': categoria.name,
-      'custo': custo,
-      'descricao': descricao,
-      'dificuldade': dificuldade.name,
-      'duracao': duracao,
-      'faixa_etaria': faixaEtaria.name,
-      'favorito': favorito,
-      'id': id,
-      'imagem': imagem,
-      'materiais': materiais,
-      'titulo': titulo,
-      'created_at': createdAt,
-      'updated_at': updatedAt,
-    };
-  }
+Map<String, dynamic> toMap() {
+  return <String, dynamic>{
+    'categoria': categoria.toStringValue(),
+    'custo': custo.toStringValue(),
+    'descricao': descricao,
+    'dificuldade': dificuldade.toStringValue(),
+    'duracao': duracao.toStringValue(),
+    'faixa_etaria': faixaEtaria.toStringValue(),
+    'favorito': favorito,
+    'id': id,
+    'imagem': imagem,
+    'materiais': materiais,
+    'titulo': titulo,
+    'created_at': createdAt,
+    'updated_at': updatedAt,
+  };
+}
 
   String toJson() => json.encode(toMap());
 }
