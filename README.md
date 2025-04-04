@@ -8,7 +8,7 @@ O app possui uma interface simples e direta, iniciando com uma splash screen e i
 
 Este aplicativo mobile foi desenvolvido especificamente para ser utilizado pelo **back-end**, consumindo todas as funções da APIREST
 
-🔗 Repositório da api: [api-brindeiras](https://github.com/thak1996/api-brincadeiras)
+🔗 Repositório da api: [api-brincadeiras](https://github.com/thak1996/api-brincadeiras)
 
 ### 🔑 Principais funcionalidades do App
 
