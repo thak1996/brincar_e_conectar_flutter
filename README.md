@@ -31,12 +31,14 @@ Este aplicativo mobile foi desenvolvido especificamente para ser utilizado pelo 
 ### 🖼️ Imagens do aplicativo
 
 <div align="center">
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/splash.png?raw=true" width="150"/>
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/home.png?raw=true" width="150"/>
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homedel.png?raw=true" width="150"/>
 <img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homeedit.png?raw=true" width="150"/>
 <img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homeconfirdel.png?raw=true" width="150"/>
 <img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homefilter.png?raw=true" width="150"/>
+</div>
+<div align="center">
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/splash.png?raw=true" width="150"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/home.png?raw=true" width="150"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homedel.png?raw=true" width="150"/>
 </div>
 
 ## 👤 Autor
