@@ -1,58 +1,42 @@
-## Brincar e Conectar: Inclusão para Todas as Idades
+## 📱 Aplicativo Mobile - Brincar e Conectar
 
-### Descrição
+O **Brincar e Conectar** é um aplicativo Flutter desenvolvido para instituições como asilos e orfanatos, com foco inicial em Guarulhos, SP. Seu objetivo é fornecer aos profissionais e representantes acesso rápido a uma lista de brincadeiras de baixo custo, organizadas por faixa etária (crianças, adolescentes e idosos).
 
-O projeto será implementado na cidade de Guarulhos - SP e tem como público-alvo instituições como asilos e orfanatos. A proposta consiste em desenvolver um aplicativo que permita a profissionais e representantes dessas instituições consultarem de maneira rápida brincadeiras de baixo custo, adaptadas a diferentes faixas etárias, para serem utilizadas no cotidiano dessas organizações.
+O app possui uma interface simples e direta, iniciando com uma splash screen e indo diretamente para a lista de atividades.
 
-### Funcionalidades
+### 🔑 Principais funcionalidades do App
 
-- **Acesso Simples e Direto**: Interface prática com uma splash view inicial que leva direto para os jogos.
-- **Informações Essenciais**: Informações diretas, aonde é possível clicar no card, e irá exibir as informações de cada jogo separadamente.
+- Navegar por uma lista de brincadeiras
+- Filtrar por faixa etária (Crianças, Adolescentes, Idosos)
+- Visualizar detalhes completos de cada brincadeira
+- Adicionar novas atividades
+- Editar atividades existentes
+- Excluir atividades (com gesto de swipe)
 
-### Tecnologias utilizadas
+### 🧰 Tecnologias utilizadas no app
 
-- Flutter
-- Arquivo Json com os jogos salvos.
+- **Flutter SDK**
+- **flutter_bloc (Cubit)** – gerenciamento de estado
+- **provider** – injeção de dependências
+- **go_router** – roteamento
+- **dio** – cliente HTTP
+- **result_dart** – tratamento funcional de erros
 
-### Como Instalar e executar
+### 🖼️ Imagens do aplicativo
 
-Siga os passos abaixo para instalar e executar o aplicativo em seu ambiente local:
-
-```bash
-# Clone o Repositório
-git clone git@github.com:thak1996/brincar_e_conectar_flutter.git
-
-# Acesse o diretório do projeto
-cd brincar_e_conectar_flutter
-
-# Use o comando
-flutter run
-
-# Agora selecione o a interface necessária.
+```markdown
+![SplashPage](assets/readme/splash.jpeg)
+![HomePage](assets/readme/home.png)
+![HomeDel](assets/readme/homedel.png)
+![HomeEdit](assets/readme/homeedit.png)
+![HomeConfirDel](assets/readme/homeconfirdel.png)
+![HomeEdit](assets/readme/homeedit.png)
+![HomeFilter](assets/readme/homefilter.png)
 ```
 
-O projeto foi feito usando como base um arquivo json para lidar com um back-end fictício:
+## 👤 Autor
 
-<https://github.com/thak1996/brincar_e_conectar-json>
-
-Desta forma tirando a necessidade obrigatório para criar este exemplo.
-
-### Imagens do Projeto
-
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-    <img src="/assets/readme/splash.jpeg" alt="Sort by Number" style="width: 150px; height: auto; margin: 10px;">
-    <img src="/assets/readme/home_one.jpeg" alt="Not Found" style="width: 150px; height: auto; margin: 10px;">
-    <img src="/assets/readme/home_two.jpeg" alt="Sort by Name" style="width: 150px; height: auto; margin: 10px;">
-    <img src="/assets/readme/details_one.jpeg" alt="Home" style="width: 150px; height: auto; margin: 10px;">
-    <img src="/assets/readme/details_two.jpeg" alt="Details" style="width: 150px; height: auto; margin: 10px;">
-</div>
-
-### Futuras melhorias
-
-O projeto está aberto a futuras melhorias, incluindo um back-end e um sistema de autenticação de login para lidar com os jogos e futuros usuários.
-
-### Contato
-
-Nome do Desenvolvedor: Franklyn Viana dos Santos </br>
-E-mail: <franklyn_vs_@hotmail.com> </br>
-RU Uninter: 4298019 </br>
+**Franklyn Viana dos Santos**  
+📧 E-mail: franklyn_vs_@hotmail.com  
+🎓 RU Uninter: 4298019  
+🔗 [LinkedIn](https://www.linkedin.com/in/franklyn-v-santos/)
