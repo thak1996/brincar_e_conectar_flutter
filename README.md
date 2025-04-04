@@ -4,6 +4,12 @@ O **Brincar e Conectar** é um aplicativo Flutter desenvolvido para instituiçõ
 
 O app possui uma interface simples e direta, iniciando com uma splash screen e indo diretamente para a lista de atividades.
 
+## 📱 Integração com o Front-end
+
+Este aplicativo mobile foi desenvolvido especificamente para ser utilizado pelo **back-end**, consumindo todas as funções da APIREST
+
+🔗 Repositório da api: [api-brideiras](https://github.com/thak1996/api-brincadeiras)
+
 ### 🔑 Principais funcionalidades do App
 
 - Navegar por uma lista de brincadeiras
