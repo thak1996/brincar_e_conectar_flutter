@@ -24,14 +24,14 @@ O app possui uma interface simples e direta, iniciando com uma splash screen e i
 
 ### 🖼️ Imagens do aplicativo
 
-```
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/splash.jpeg?raw=true" width="300"/>
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/home.png?raw=true" width="300"/>
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homedel.png?raw=true" width="300"/>
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homeedit.png?raw=true" width="300"/>
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homeconfirdel.png?raw=true" width="300"/>
-<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homefilter.png?raw=true" width="300"/>
-```
+<div align="center">
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/splash.png?raw=true" width="150"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/home.png?raw=true" width="150"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homedel.png?raw=true" width="150"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homeedit.png?raw=true" width="150"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homeconfirdel.png?raw=true" width="150"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homefilter.png?raw=true" width="150"/>
+</div>
 
 ## 👤 Autor
 
