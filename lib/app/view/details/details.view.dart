@@ -28,12 +28,12 @@ class BrincadeiraDetalhesView extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.access_time),
               title: const Text('Duração'),
-              subtitle: Text(formatUpperCase(brincadeiras.duracao)),
+              subtitle: Text(brincadeiras.duracao.formatted),
             ),
             ListTile(
               leading: const Icon(Icons.attach_money),
               title: const Text('Custo'),
-              subtitle: Text(formatUpperCase(brincadeiras.custo)),
+              subtitle: Text(brincadeiras.custo.formatted),
             ),
             ListTile(
               leading: const Icon(Icons.emoji_events),

@@ -4,29 +4,26 @@ import '../../core/utils/enum.utils.dart';
 import '../../core/utils/validator.dart';
 import '../../models/brincadeiras.dart';
 import '../widgets/app.bar.widget.dart';
+import '../widgets/dropdown.widget.dart';
+import '../widgets/text.form.field.widget.dart';
 import 'edit.controller.dart';
 
 class EditView extends StatelessWidget {
-  final Brincadeiras? brincadeiras;
-
   const EditView({super.key, this.brincadeiras});
+
+  final Brincadeiras? brincadeiras;
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
     final TextEditingController tituloController = TextEditingController(
       text: brincadeiras?.titulo,
     );
     final TextEditingController descricaoController = TextEditingController(
       text: brincadeiras?.descricao,
     );
-    final TextEditingController custoController = TextEditingController(
-      text: brincadeiras?.custo,
-    );
-    final TextEditingController duracaoController = TextEditingController(
-      text: brincadeiras?.duracao,
-    );
+    Custo? custoSelecionado = brincadeiras?.custo;
+    Duracao? duracaoSelecionada = brincadeiras?.duracao;
     Categoria? categoriaSelecionada = brincadeiras?.categoria;
     FaixaEtaria? faixaEtariaSelecionada = brincadeiras?.faixaEtaria;
     Dificuldade? dificuldadeSelecionada = brincadeiras?.dificuldade;
@@ -38,150 +35,196 @@ class EditView extends StatelessWidget {
           title:
               brincadeiras == null ? 'Nova Brincadeira' : 'Editar Brincadeira',
         ),
-        body: BlocConsumer<EditController, EditState>(
-          listener: (context, state) {
-            if (state is EditSuccess) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
-              Navigator.pop(context);
-            } else if (state is EditError) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('Erro: ${state.message}')));
-            }
-          },
-          builder: (context, state) {
-            if (state is EditLoading) {
+        body: FutureBuilder(
+          future: Future.delayed(const Duration(seconds: 1)),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 16,
-                  children: [
-                    TextFormField(
-                      controller: tituloController,
-                      decoration: const InputDecoration(
-                        labelText: 'Título',
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (value) {
-                        return Validator.validateRequiredField(value, 'Título');
-                      },
-                    ),
-                    TextFormField(
-                      controller: descricaoController,
-                      decoration: const InputDecoration(
-                        labelText: 'Descrição',
-                        border: OutlineInputBorder(),
-                      ),
-                      maxLines: 4,
-                      validator: (value) {
-                        return Validator.validateRequiredField(
-                          value,
-                          'Descrição',
-                        );
-                      },
-                    ),
-                    DropdownButtonFormField<Categoria>(
-                      value: categoriaSelecionada,
-                      decoration: const InputDecoration(
-                        labelText: 'Categoria',
-                        border: OutlineInputBorder(),
-                      ),
-                      items:
-                          Categoria.values.map((Categoria categoria) {
-                            return DropdownMenuItem<Categoria>(
-                              value: categoria,
-                              child: Text(categoria.formatted),
+            return BlocConsumer<EditController, EditState>(
+              listener: (context, state) {
+                switch (state) {
+                  case EditSuccess():
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(state.message)));
+                    Navigator.pop(context);
+                    break;
+                  case EditError():
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Erro: ${state.message}')),
+                    );
+                    break;
+                  default:
+                    break;
+                }
+              },
+              builder: (context, state) {
+                if (state is EditLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 20,
+                  ),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: 16,
+                      children: [
+                        TextFormFieldWidget(
+                          controller: tituloController,
+                          labelText: 'Título',
+                          validator: (value) {
+                            return Validator.validateRequiredField(
+                              value,
+                              'Título',
                             );
-                          }).toList(),
-                      onChanged: (Categoria? novaCategoria) {
-                        categoriaSelecionada = novaCategoria;
-                      },
-                    ),
-                    TextFormField(
-                      controller: custoController,
-                      decoration: const InputDecoration(
-                        labelText: 'Custo',
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    TextFormField(
-                      controller: duracaoController,
-                      decoration: const InputDecoration(
-                        labelText: 'Duração',
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    DropdownButtonFormField<FaixaEtaria>(
-                      value: faixaEtariaSelecionada,
-                      decoration: const InputDecoration(
-                        labelText: 'Faixa Etária',
-                        border: OutlineInputBorder(),
-                      ),
-                      items:
-                          FaixaEtaria.values.map((FaixaEtaria faixaEtaria) {
-                            return DropdownMenuItem<FaixaEtaria>(
-                              value: faixaEtaria,
-                              child: Text(faixaEtaria.formatted),
+                          },
+                        ),
+                        TextFormFieldWidget(
+                          controller: descricaoController,
+                          labelText: 'Descrição',
+                          validator: (value) {
+                            return Validator.validateRequiredField(
+                              value,
+                              'Descrição',
                             );
-                          }).toList(),
-                      onChanged: (FaixaEtaria? novaFaixaEtaria) {
-                        faixaEtariaSelecionada = novaFaixaEtaria;
-                      },
-                    ),
-                    DropdownButtonFormField<Dificuldade>(
-                      value: dificuldadeSelecionada,
-                      decoration: const InputDecoration(
-                        labelText: 'Dificuldade',
-                        border: OutlineInputBorder(),
-                      ),
-                      items:
-                          Dificuldade.values.map((Dificuldade dificuldade) {
-                            return DropdownMenuItem<Dificuldade>(
-                              value: dificuldade,
-                              child: Text(dificuldade.formatted),
+                          },
+                        ),
+                        Row(
+                          spacing: 8,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: DropdownFormFieldWidget<Categoria>(
+                                value: categoriaSelecionada,
+                                labelText: 'Categoria',
+                                items:
+                                    Categoria.values.map((Categoria categoria) {
+                                      return DropdownMenuItem<Categoria>(
+                                        value: categoria,
+                                        child: Text(categoria.formatted),
+                                      );
+                                    }).toList(),
+                                onChanged: (Categoria? novaCategoria) {
+                                  categoriaSelecionada = novaCategoria;
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: DropdownFormFieldWidget<Custo>(
+                                value: custoSelecionado,
+                                labelText: 'Custo',
+                                items:
+                                    Custo.values.map((Custo custo) {
+                                      return DropdownMenuItem<Custo>(
+                                        value: custo,
+                                        child: Text(custo.formatted),
+                                      );
+                                    }).toList(),
+                                onChanged: (Custo? novoCusto) {
+                                  custoSelecionado = novoCusto;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          spacing: 8,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: DropdownFormFieldWidget<FaixaEtaria>(
+                                value: faixaEtariaSelecionada,
+                                labelText: 'Faixa Etária',
+                                items:
+                                    FaixaEtaria.values.map((
+                                      FaixaEtaria faixaEtaria,
+                                    ) {
+                                      return DropdownMenuItem<FaixaEtaria>(
+                                        value: faixaEtaria,
+                                        child: Text(faixaEtaria.formatted),
+                                      );
+                                    }).toList(),
+                                onChanged: (FaixaEtaria? novaFaixaEtaria) {
+                                  faixaEtariaSelecionada = novaFaixaEtaria;
+                                },
+                              ),
+                            ),
+
+                            Expanded(
+                              flex: 1,
+                              child: DropdownFormFieldWidget<Dificuldade>(
+                                value: dificuldadeSelecionada,
+                                labelText: 'Dificuldade',
+                                items:
+                                    Dificuldade.values.map((
+                                      Dificuldade dificuldade,
+                                    ) {
+                                      return DropdownMenuItem<Dificuldade>(
+                                        value: dificuldade,
+                                        child: Text(dificuldade.formatted),
+                                      );
+                                    }).toList(),
+                                onChanged: (Dificuldade? novaDificuldade) {
+                                  dificuldadeSelecionada = novaDificuldade;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        DropdownFormFieldWidget<Duracao>(
+                          value: duracaoSelecionada,
+                          labelText: 'Duração',
+                          onChanged: (Duracao? novaDuracao) {
+                            duracaoSelecionada = novaDuracao;
+                          },
+                          items:
+                              Duracao.values.map((Duracao duracao) {
+                                return DropdownMenuItem<Duracao>(
+                                  value: duracao,
+                                  child: Text(duracao.formatted),
+                                );
+                              }).toList(),
+                        ),
+
+                        ElevatedButton(
+                          onPressed: () {
+                            final brincadeira = Brincadeiras(
+                              id: brincadeiras?.id,
+                              titulo: tituloController.text,
+                              descricao: descricaoController.text,
+                              categoria: categoriaSelecionada!,
+                              custo: custoSelecionado!,
+                              duracao: duracaoSelecionada!,
+                              faixaEtaria: faixaEtariaSelecionada!,
+                              dificuldade: dificuldadeSelecionada!,
+                              materiais: [],
+                              updatedAt: brincadeiras?.updatedAt,
                             );
-                          }).toList(),
-                      onChanged: (Dificuldade? novaDificuldade) {
-                        dificuldadeSelecionada = novaDificuldade;
-                      },
+                            if (brincadeiras == null) {
+                              context.read<EditController>().saveBrincadeira(
+                                brincadeira,
+                              );
+                            } else {
+                              context.read<EditController>().updateBrincadeira(
+                                brincadeira,
+                              );
+                            }
+                          },
+                          child: Text(
+                            brincadeiras == null ? 'Criar' : 'Salvar',
+                          ),
+                        ),
+                      ],
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        final brincadeira = Brincadeiras(
-                          id: brincadeiras?.id ?? 0,
-                          titulo: tituloController.text,
-                          descricao: descricaoController.text,
-                          categoria: categoriaSelecionada!,
-                          custo: brincadeiras?.custo ?? '',
-                          duracao: brincadeiras?.duracao ?? '1 hora',
-                          faixaEtaria: faixaEtariaSelecionada!,
-                          dificuldade: dificuldadeSelecionada!,
-                          materiais: [],
-                          createdAt: brincadeiras?.createdAt ?? '',
-                          updatedAt: brincadeiras?.updatedAt ?? '',
-                        );
-                        if (brincadeiras == null) {
-                          context.read<EditController>().saveBrincadeira(
-                            brincadeira,
-                          );
-                        } else {
-                          context.read<EditController>().updateBrincadeira(
-                            brincadeira,
-                          );
-                        }
-                      },
-                      child: Text(brincadeiras == null ? 'Criar' : 'Salvar'),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             );
           },
         ),

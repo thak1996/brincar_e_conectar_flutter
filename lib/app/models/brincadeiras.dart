@@ -27,11 +27,11 @@ class Brincadeiras {
     return Brincadeiras(
       titulo: map['titulo'] as String,
       categoria: CategoriaExtension.fromString(map['categoria'] as String)!,
-      custo: map['custo'] as String,
+      custo: CustoExtension.fromString(map['custo'] as String)!,
       descricao: map['descricao'] as String,
       dificuldade:
           DificuldadeExtension.fromString(map['dificuldade'] as String)!,
-      duracao: map['duracao'] as String,
+      duracao: DuracaoExtension.fromString(map['duracao'] as String)!,
       faixaEtaria:
           FaixaEtariaExtension.fromString(map['faixa_etaria'] as String)!,
       favorito: map['favorito'] as bool?,
@@ -44,10 +44,10 @@ class Brincadeiras {
   }
 
   final Categoria categoria;
-  final String custo;
+  final Custo custo;
   final String descricao;
   final Dificuldade dificuldade;
-  final String duracao;
+  final Duracao duracao;
   final FaixaEtaria faixaEtaria;
   final bool? favorito;
   final int? id;
@@ -98,37 +98,37 @@ class Brincadeiras {
     return 'Brincadeiras(categoria: $categoria, custo: $custo, descricao: $descricao, dificuldade: $dificuldade, duracao: $duracao, faixaEtaria: $faixaEtaria, favorito: $favorito, id: $id, imagem: $imagem, materiais: $materiais, titulo: $titulo, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
-Brincadeiras copyWith({
-  Categoria? categoria,
-  String? custo,
-  String? descricao,
-  Dificuldade? dificuldade,
-  String? duracao,
-  FaixaEtaria? faixaEtaria,
-  bool? favorito,
-  int? id,
-  String? imagem,
-  List<String>? materiais,
-  String? titulo,
-  String? createdAt,
-  String? updatedAt,
-}) {
-  return Brincadeiras(
-    categoria: categoria ?? this.categoria,
-    custo: custo ?? this.custo,
-    descricao: descricao ?? this.descricao,
-    dificuldade: dificuldade ?? this.dificuldade,
-    duracao: duracao ?? this.duracao,
-    faixaEtaria: faixaEtaria ?? this.faixaEtaria,
-    favorito: favorito ?? this.favorito,
-    id: id ?? this.id,
-    imagem: imagem ?? this.imagem,
-    materiais: materiais ?? this.materiais,
-    titulo: titulo ?? this.titulo,
-    createdAt: createdAt ?? this.createdAt,
-    updatedAt: updatedAt ?? this.updatedAt,
-  );
-}
+  Brincadeiras copyWith({
+    Categoria? categoria,
+    Custo? custo,
+    String? descricao,
+    Dificuldade? dificuldade,
+    Duracao? duracao,
+    FaixaEtaria? faixaEtaria,
+    bool? favorito,
+    int? id,
+    String? imagem,
+    List<String>? materiais,
+    String? titulo,
+    String? createdAt,
+    String? updatedAt,
+  }) {
+    return Brincadeiras(
+      categoria: categoria ?? this.categoria,
+      custo: custo ?? this.custo,
+      descricao: descricao ?? this.descricao,
+      dificuldade: dificuldade ?? this.dificuldade,
+      duracao: duracao ?? this.duracao,
+      faixaEtaria: faixaEtaria ?? this.faixaEtaria,
+      favorito: favorito ?? this.favorito,
+      id: id ?? this.id,
+      imagem: imagem ?? this.imagem,
+      materiais: materiais ?? this.materiais,
+      titulo: titulo ?? this.titulo,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
