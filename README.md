@@ -24,13 +24,14 @@ O app possui uma interface simples e direta, iniciando com uma splash screen e i
 
 ### 🖼️ Imagens do aplicativo
 
-![SplashPage](assets/readme/splash.jpeg)
-![HomePage](assets/readme/home.png)
-![HomeDel](assets/readme/homedel.png)
-![HomeEdit](assets/readme/homeedit.png)
-![HomeConfirDel](assets/readme/homeconfirdel.png)
-![HomeEdit](assets/readme/homeedit.png)
-![HomeFilter](assets/readme/homefilter.png)
+```
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/splash.jpeg?raw=true" width="300"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/home.png?raw=true" width="300"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homedel.png?raw=true" width="300"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homeedit.png?raw=true" width="300"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homeconfirdel.png?raw=true" width="300"/>
+<img src="https://github.com/thak1996/brincar_e_conectar_flutter/blob/main/assets/readme/homefilter.png?raw=true" width="300"/>
+```
 
 ## 👤 Autor
 
