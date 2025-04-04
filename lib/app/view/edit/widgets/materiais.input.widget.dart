@@ -1,7 +1,7 @@
 import 'package:brincar_e_conectar_flutter/app/core/constants/styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/utils/string.utils.dart';
+import '../../../core/utils/string.utils.dart';
 
 class MateriaisInputWidget extends StatefulWidget {
   final List<String> materiais;

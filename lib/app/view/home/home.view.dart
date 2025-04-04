@@ -1,11 +1,12 @@
-import 'package:brincar_e_conectar_flutter/app/core/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/app.bar.widget.dart';
-import '../widgets/error.widget.dart';
-import '../widgets/listtile.widget.dart';
+import 'widgets/error.widget.dart';
+import 'widgets/floating.button.widget.dart';
+import 'widgets/listtile.widget.dart';
 import 'home.controller.dart';
+import 'widgets/title.positioned.widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -37,89 +38,58 @@ class HomeView extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.white,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => context.push('/edit'),
-          shape: const CircleBorder(),
-          hoverColor: primaryColor,
-          child: const Icon(Icons.add),
-        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingButtonWidget(() => context.push('/edit')),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BlocBuilder<HomeController, HomeState>(
               builder: (context, state) {
-                switch (state.runtimeType) {
-                  case const (HomeLoading):
+                switch (state) {
+                  case HomeLoading():
                     return const Center(child: CircularProgressIndicator());
-                  case const (HomeLoaded):
-                    final stateLoaded = state as HomeLoaded;
+                  case HomeLoaded():
                     return Expanded(
                       child: Stack(
                         children: [
-                          Positioned.fill(
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: ListView.builder(
-                                    itemCount: stateLoaded.brincadeiras.length,
-                                    padding: const EdgeInsets.only(top: 60),
-                                    itemBuilder: (context, index) {
-                                      final brincadeira =
-                                          stateLoaded.brincadeiras[index];
-                                      return ListTileWidget(
-                                        id: brincadeira.id,
-                                        title: brincadeira.titulo,
-                                        description: brincadeira.descricao,
-                                        onTap:
-                                            () => context.push(
-                                              '/brincadeira_detail',
-                                              extra: brincadeira,
-                                            ),
-                                        onDelete:
-                                            () => context
-                                                .read<HomeController>()
-                                                .deleteBrincadeira(brincadeira),
-                                        onEdit:
-                                            () => context.push(
-                                              '/edit',
-                                              extra: brincadeira,
-                                            ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: state.brincadeiras.length,
+                              padding: const EdgeInsets.only(top: 60),
+                              itemBuilder: (context, index) {
+                                final brincadeira = state.brincadeiras[index];
+                                return ListTileWidget(
+                                  id: brincadeira.id,
+                                  title: brincadeira.titulo,
+                                  description: brincadeira.descricao,
+                                  onTap:
+                                      () => context.push(
+                                        '/brincadeira_detail',
+                                        extra: brincadeira,
+                                      ),
+                                  onDelete:
+                                      () => context
+                                          .read<HomeController>()
+                                          .deleteBrincadeira(brincadeira),
+                                  onEdit:
+                                      () => context.push(
+                                        '/edit',
+                                        extra: brincadeira,
+                                      ),
+                                );
+                              },
                             ),
                           ),
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              color: Colors.white,
-                              padding: const EdgeInsets.all(16),
-                              child: Text(
-                                'Lista de Brincadeiras',
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
+                          TitlePositioned(),
                         ],
                       ),
                     );
-                  case const (HomeError):
-                    final stateError = state as HomeError;
+                  case HomeError():
                     return HomeErrorWidget(
-                      text: stateError.message,
-                      onPressed:
-                          () =>
-                              context
-                                  .read<HomeController>()
-                                  .getAllBrincadeiras(),
+                      text: state.message,
+                      onPressed: () {
+                        context.read<HomeController>().getAllBrincadeiras();
+                      },
                     );
                   default:
                     return const SizedBox();

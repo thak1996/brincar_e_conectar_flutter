@@ -4,9 +4,9 @@ import '../../core/utils/enum.utils.dart';
 import '../../core/utils/validator.dart';
 import '../../models/brincadeiras.dart';
 import '../widgets/app.bar.widget.dart';
-import '../widgets/dropdown.widget.dart';
-import '../widgets/materiais.input.widget.dart';
-import '../widgets/text.form.field.widget.dart';
+import 'widgets/dropdown.widget.dart';
+import 'widgets/materiais.input.widget.dart';
+import 'widgets/text.form.field.widget.dart';
 import 'edit.controller.dart';
 
 class EditView extends StatelessWidget {

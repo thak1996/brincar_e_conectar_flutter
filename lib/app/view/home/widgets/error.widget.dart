@@ -1,4 +1,4 @@
-import '../../core/constants/styles.dart';
+import '../../../core/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class HomeErrorWidget extends StatelessWidget {
