@@ -44,12 +44,15 @@ class HomeController extends Cubit<HomeState> {
     }, (error) => emit(HomeError(error.toString())));
   }
 
-  void deleteBrincadeira(Brincadeiras brincadeira) {
+  void deleteBrincadeira(Brincadeiras brincadeira) async {
     emit(HomeLoading());
-    _allBrincadeiras.remove(brincadeira);
-    emit(
-      HomeLoaded(brincadeiras: _allBrincadeiras, faixaEtariaFilter: 'todas'),
-    );
+    final result = await _service.delBrincadeira(brincadeira.id!);
+    result.fold((sucess) {
+      _allBrincadeiras.remove(brincadeira);
+      emit(
+        HomeLoaded(brincadeiras: _allBrincadeiras, faixaEtariaFilter: 'todas'),
+      );
+    }, (error) => emit(HomeError('Erro ao deletar a brincadeira: $error')));
   }
 }
 

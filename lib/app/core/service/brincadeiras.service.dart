@@ -28,8 +28,11 @@ class BrincadeirasService extends BaseService implements IBrincadeirasService {
   AsyncResult<void> delBrincadeira(int id) async {
     try {
       final response = await delete('$parseUrl/$id');
-      final responseData = response.data as Map<String, dynamic>;
-      if (responseData['success'] != true) {
+      if (response.statusCode == 204) {
+        return Success('Brincadeira deletada com sucesso!');
+      }
+      final responseData = response.data;
+      if (responseData != null && responseData['success'] != true) {
         throw ValidationException(
           responseData['message'] ?? 'Erro ao deletar a brincadeira.',
           response.statusCode,
