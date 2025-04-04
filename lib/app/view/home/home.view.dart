@@ -52,33 +52,31 @@ class HomeView extends StatelessWidget {
                     return Expanded(
                       child: Stack(
                         children: [
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: state.brincadeiras.length,
-                              padding: const EdgeInsets.only(top: 60),
-                              itemBuilder: (context, index) {
-                                final brincadeira = state.brincadeiras[index];
-                                return ListTileWidget(
-                                  id: brincadeira.id,
-                                  title: brincadeira.titulo,
-                                  description: brincadeira.descricao,
-                                  onTap:
-                                      () => context.push(
-                                        '/brincadeira_detail',
-                                        extra: brincadeira,
-                                      ),
-                                  onDelete:
-                                      () => context
-                                          .read<HomeController>()
-                                          .deleteBrincadeira(brincadeira),
-                                  onEdit:
-                                      () => context.push(
-                                        '/edit',
-                                        extra: brincadeira,
-                                      ),
-                                );
-                              },
-                            ),
+                          ListView.builder(
+                            itemCount: state.brincadeiras.length,
+                            padding: const EdgeInsets.only(top: 60),
+                            itemBuilder: (context, index) {
+                              final brincadeira = state.brincadeiras[index];
+                              return ListTileWidget(
+                                id: brincadeira.id,
+                                title: brincadeira.titulo,
+                                description: brincadeira.descricao,
+                                onTap:
+                                    () => context.push(
+                                      '/brincadeira_detail',
+                                      extra: brincadeira,
+                                    ),
+                                onDelete:
+                                    () => context
+                                        .read<HomeController>()
+                                        .deleteBrincadeira(brincadeira),
+                                onEdit:
+                                    () => context.push(
+                                      '/edit',
+                                      extra: brincadeira,
+                                    ),
+                              );
+                            },
                           ),
                           TitlePositioned(),
                         ],

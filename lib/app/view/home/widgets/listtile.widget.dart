@@ -37,8 +37,34 @@ class ListTileWidget extends StatelessWidget {
       ),
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.startToEnd) {
-          onDelete();
-          return true;
+          final confirm = await showDialog<bool>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Confirmar Exclusão'),
+                content: const Text(
+                  'Tem certeza de que deseja apagar esta brincadeira?',
+                ),
+                actions: [
+                  TextButton(
+                    onPressed:
+                        () => Navigator.of(context).pop(false),
+                    child: const Text('Cancelar'),
+                  ),
+                  TextButton(
+                    onPressed:
+                        () => Navigator.of(context).pop(true),
+                    child: const Text('Apagar'),
+                  ),
+                ],
+              );
+            },
+          );
+          if (confirm == true) {
+            onDelete();
+            return true;
+          }
+          return false;
         } else if (direction == DismissDirection.endToStart) {
           onEdit();
           return false;

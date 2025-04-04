@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dio/dio.dart';
 import '../utils/exceptions.dart';
 
@@ -13,11 +12,10 @@ class BaseService {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          log('Requisição para: ${options.uri}');
+          // log('Requisição para: ${options.uri}');
           return handler.next(options);
         },
         onResponse: (response, handler) {
-          // Verifica se a resposta contém sucesso
           if (response.data is Map<String, dynamic> &&
               response.data['success'] == false) {
             final message = response.data['message'] ?? 'Erro desconhecido';
@@ -26,12 +24,10 @@ class BaseService {
           return handler.next(response);
         },
         onError: (dioError, handler) {
-          // Trata erros de conexão e HTTP
           if (dioError.response != null) {
             final statusCode = dioError.response?.statusCode;
             final message =
                 dioError.response?.data['message'] ?? 'Erro desconhecido';
-
             if (statusCode == 401) {
               throw UnauthorizedException(message, statusCode);
             } else if (statusCode == 404) {

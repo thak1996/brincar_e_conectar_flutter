@@ -45,9 +45,8 @@ class HomeController extends Cubit<HomeState> {
   }
 
   void deleteBrincadeira(Brincadeiras brincadeira) async {
-    emit(HomeLoading());
     final result = await _service.delBrincadeira(brincadeira.id!);
-    result.fold((sucess) {
+    result.fold((success) {
       _allBrincadeiras.remove(brincadeira);
       emit(
         HomeLoaded(brincadeiras: _allBrincadeiras, faixaEtariaFilter: 'todas'),
