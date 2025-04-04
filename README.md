@@ -24,7 +24,6 @@ O app possui uma interface simples e direta, iniciando com uma splash screen e i
 
 ### 🖼️ Imagens do aplicativo
 
-```markdown
 ![SplashPage](assets/readme/splash.jpeg)
 ![HomePage](assets/readme/home.png)
 ![HomeDel](assets/readme/homedel.png)
@@ -32,7 +31,6 @@ O app possui uma interface simples e direta, iniciando com uma splash screen e i
 ![HomeConfirDel](assets/readme/homeconfirdel.png)
 ![HomeEdit](assets/readme/homeedit.png)
 ![HomeFilter](assets/readme/homefilter.png)
-```
 
 ## 👤 Autor
 
